@@ -3,6 +3,7 @@ package com.pdr.veigris;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,6 +48,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.upload_takeout:
+                Intent intent = new Intent(this, TakeoutUploadActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.bust_cache:
                 return true;
