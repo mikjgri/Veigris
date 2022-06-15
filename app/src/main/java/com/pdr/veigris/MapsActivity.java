@@ -53,13 +53,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(binding.getRoot());
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
     private void getLocationPermission() {
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true;
+            updateLocationUI();
         } else {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
@@ -129,6 +129,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng start = new LatLng(59, 10);
         mMap.moveCamera(CameraUpdateFactory.zoomTo(7));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(start));
+        getLocationPermission();
         drawRoutes();
     }
     @SuppressLint("MissingPermission")
